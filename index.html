@@ -14,19 +14,63 @@
     </div>
     <div id="timer">Tempo: 00:00</div>
   </div>
-  <div id="quiz-container">
+
+  <!-- Área de entrada de nomes dos jogadores -->
+  <div id="player-name-container" style="display: block;">
+    <h2>Jogadores</h2>
+    <label for="player1-name">Jogador 1: </label>
+    <input type="text" id="player1-name" placeholder="Nome do Jogador 1" required>
+    <br>
+    <label for="player2-name">Jogador 2: </label>
+    <input type="text" id="player2-name" placeholder="Nome do Jogador 2" required>
+    <br>
+    <button onclick="startFirstPlayer()">Iniciar Jogo</button>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quiz-container" style="display: none;">
+    <div id="player-name-display"></div> A
     <div id="question-container"></div>
     <div id="options">
       <button onclick="selectAnswer('silogismo')">Silogismo</button>
       <button onclick="selectAnswer('sofisma')">Sofisma</button>
     </div>
+    <div id="player-feedback"></div>
   </div>
+
+  <!-- Resultados e botão para iniciar o segundo jogador -->
   <div id="results-container" style="display: none;">
     <h2>Resultados</h2>
     <p id="score"></p>
     <p id="time"></p>
-    <button onclick="startGame()">Jogar Novamente</button>
+    <button id="start-second-player-btn" onclick="startSecondPlayer()" style="display: none;">Iniciar Quiz do Jogador 2</button>
+    <h2 id="winner" style="display: none;"></h2> 
   </div>
+
+  <!-- Resultados e exibição do vencedor -->
+<div id="results-container" style="display: none;">
+  <h2>Resultados</h2>
+  <p id="score"></p>
+  <p id="time"></p>
+  <p id="winner" style="display: none;"></p> 
+</div>
+
+  <!-- Música de suspense -->
+  <audio id="suspense-audio" loop>
+    <source src="suspense.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Animação de fogos -->
+  <div id="fireworks-container" style="display: none;">
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+  </div>
+
+    <!-- Contêiner dos fogos de artifício -->
+    <div id="fireworks-container"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
