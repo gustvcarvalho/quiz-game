@@ -5,148 +5,257 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
 .navbar {
   width: 100%;
-  background-color: #333;
+  background-color: #007bff;
   color: white;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
+  font-size: 1.5em;
   position: relative;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #progress-bar-container {
-  width: 80%;
-  height: 12px;
-  background-color: #e5e7eb;
-  border-radius: 6px;
+  width: 90%;
+  background-color: #e9ecef;
+  height: 10px;
+  margin: 10px auto;
+  border-radius: 5px;
   overflow: hidden;
-  margin: 20px auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
 #progress-bar {
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, #4caf50, #81c784);
-  border-radius: 6px 0 0 6px;
-  transition: width 0.4s ease, background-color 0.3s ease;
+  background-color: #28a745;
 }
 
 #timer {
-  margin-top: 5px;
+  font-size: 1em;
+  margin-top: 10px;
+  color: #f8f9fa;
 }
 
-#quiz-container {
+#player-name-container, #quiz-container, #results-container {
+  width: 100%;
   max-width: 600px;
   margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
   text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#player-name-container input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  font-size: 1em;
 }
 
 #question-container {
   margin-bottom: 20px;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-#question-container p {
-  margin: 5px 0;
+  font-size: 1.2em;
+  text-align: left;
+  color: #495057;
 }
 
 #options button {
-  margin: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  border-radius: 0.375rem;
-  background-color: #1a1a1a;
-  color: #ffffff; 
-  border: 1px solid transparent;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
   cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
 }
-
 
 #options button:hover {
-  background-color: #2a2a2a; 
+  background-color: #0056b3;
 }
 
-#options button:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
-}
-
+/* Estilo para a resposta correta */
 .correct-answer {
-  color: green;
+  color: white; 
+  background-color: #28a745; 
   font-weight: bold;
+  animation: correctAnimation 1s ease-out forwards;
+  padding: 10px;
+  border-radius: 5px;
 }
 
+/* Estilo para a resposta errada */
 .wrong-answer {
-  color: red;
+  color: white; 
+  background-color: #dc3545; 
   font-weight: bold;
+  animation: wrongAnimation 1s ease-out forwards;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-#results-container {
-  display: none;
-  width: 80%;
-  max-width: 400px;
-  background-color: #f9fafb;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin: 50px auto;
-  font-family: 'Arial', sans-serif;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+@keyframes colorChange {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
-#results-container h2 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  color: #1f2937;
-}
-
-#results-container p {
-  font-size: 1rem;
-  color: #4b5563;
+#player-name-display {
+  font-size: 1.2em;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-#results-container button {
-  background-color: #4caf50;
-  color: #ffffff;
+#player-feedback {
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+#fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.firework {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #FF4500; 
+  animation: fireworks 1s ease-out infinite;
+}
+
+@keyframes firework-animation {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .navbar {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  #player-name-container, #quiz-container, #results-container {
+    padding: 15px;
+    margin: 15px;
+  }
+
+  /* Estilo do texto da questão */
+#question-container {
+  color: #495057; 
+  transition: color 0.5s ease-out;
+}
+
+  #options button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+  }
+}
+
+@keyframes revertColor {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; color: #495057; }
+}
+
+/* Animação de cor para a resposta correta */
+@keyframes correctAnimation {
+  0% { opacity: 0.7; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Animação de cor para a resposta errada */
+@keyframes wrongAnimation {
+  0% { opacity: 0.7; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Transição suave para a cor padrão */
+.color-reverted {
+  animation: revertColor 2s ease-in-out forwards;
+}
+
+
+/* Estilo do botão de iniciar jogo */
+button {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
-#results-container button:hover {
-  background-color: #388e3c;
+/* Brilho e transição ao passar o mouse */
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.5);
 }
 
-#results-container button:active {
-  transform: scale(0.95);
+button:active {
+  background-color: #004085;
+}
+
+/* Estilo de destaque para o vencedor */
+.winner-highlight {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5vw; 
+  font-weight: bold;
+  color: #FFD700; 
+  z-index: 1000;
+  text-align: center;
+}
+
+/* Estilo fixo para o feedback */
+#winner-feedback {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  text-align: center;
+}
+
+
+/* Animação para fogos */
+@keyframes fireworks {
+  0% { opacity: 1; transform: scale(0.5) translate(-50%, -50%); }
+  50% { opacity: 0.8; transform: scale(1.2) translate(-50%, -50%); }
+  100% { opacity: 0; transform: scale(0.5) translate(-50%, -50%); }
 }
