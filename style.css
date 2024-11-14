@@ -84,6 +84,18 @@ body {
   transition: background-color 0.3s ease;
 }
 
+#final-results {
+  margin-top: 64px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
 #options button:hover {
   background-color: #0056b3;
 }

@@ -65,7 +65,7 @@ function setupGame() {
 // Atualiza o display do jogador atual
 function updatePlayerDisplay() {
   const playerNameDisplay = document.getElementById('player-name-display');
-  playerNameDisplay.textContent = currentPlayer === 1 ? `${player1Name}'s Turn` : `${player2Name}'s Turn`;
+  playerNameDisplay.textContent = currentPlayer === 1 ? `Sua vez, ${player1Name}` : `Sua vez, ${player2Name}`;
 }
 
 // Exibe a pergunta atual
@@ -106,7 +106,7 @@ function selectAnswer(answer) {
 
     // Se ainda houver perguntas, avançamos; caso contrário, encerramos o jogador
     currentQuestionIndex++;
-    if (currentQuestionIndex < selectedQuestions.length) {
+    if (currentQuestionIndex <= selectedQuestions.length) {
       updateProgress();
       showQuestion();
     } else {
@@ -143,7 +143,7 @@ function endCurrentPlayer() {
 
   const minutes = Math.floor(elapsedTime / 60);
   const seconds = elapsedTime % 60;
-  document.getElementById('score').textContent = `Pontuação Jogador ${currentPlayer}: ${scores[currentPlayer - 1]}`;
+  document.getElementById('score').textContent = `Pontuação Jogador ${currentPlayer === 1 ? player1Name : player2Name}: ${scores[currentPlayer - 1]}`;
   document.getElementById('time').textContent = `Tempo: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
   if (currentPlayer === 1) {
@@ -198,7 +198,8 @@ function resetQuiz() {
   document.getElementById('final-results').remove();
   document.getElementById('player-name-container').style.display = 'block';
   document.getElementById('timer').style.display = 'none';
-
+  const progress = document.getElementById('progress-bar');
+  progress.style.width = `0%`;
   clearInterval(interval);
 
   scores = [0, 0];
